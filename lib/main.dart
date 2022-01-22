@@ -1,3 +1,4 @@
+import 'package:bakersoft/business/cart/bloc.dart';
 import 'package:bakersoft/business/product/bloc.dart';
 import 'package:bakersoft/constants.dart';
 import 'package:bakersoft/pages/product/list.dart';
@@ -5,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
+
+import 'business/productDetail/bloc.dart';
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -23,6 +26,8 @@ class BakerSoft extends StatelessWidget {
       builder: () =>MultiBlocProvider(
         providers: [
           BlocProvider<ProductBloc>(create: (_) => ProductBloc()),
+          BlocProvider<ProductDetailBloc>(create: (_) => ProductDetailBloc()),
+          BlocProvider<CartBloc>(create: (_) => CartBloc()),
         ],
         child: MaterialApp(
             title: "Baker Soft",
@@ -36,4 +41,3 @@ class BakerSoft extends StatelessWidget {
     );
   }
 }
-

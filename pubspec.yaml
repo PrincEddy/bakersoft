@@ -30,6 +30,7 @@ dev_dependencies:
   freezed: ^1.1.1
   json_serializable: ^6.1.4
 
+
 #  flutter_lints: ^1.0.0
 
 flutter:

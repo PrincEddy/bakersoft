@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "610132445830",
+    "project_id": "bakersoft-27500",
+    "storage_bucket": "bakersoft-27500.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610132445830:android:bc8deb7e12bc199c8e9f07",
+        "android_client_info": {
+          "package_name": "com.bakersoft.bakersoft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610132445830-c1ugve2ee6faskch6mavr4t5233rsp7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLlFkKvJDIUsVu1eIR-QtQ5Pa2Qf5wZnM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610132445830-c1ugve2ee6faskch6mavr4t5233rsp7u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "610132445830-sq4em6fjqv4lcsa6i104csacloqngmvq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bakersoft.bakersoft"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

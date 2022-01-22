@@ -20,7 +20,7 @@ class ProductBloc extends Bloc<ProductEvent,ProductState>{
         streamSubscription= productCollection.snapshots().listen((event) {
          List<Product> products =  event.docs.map((e){
            Map<String,dynamic> data = e.data();
-           data['id']=e.id;
+           data['productID']=e.id;
            return Product.fromJson(data);
          }).toList();
          add(ProductsLoaded(products));

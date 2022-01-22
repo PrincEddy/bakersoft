@@ -13,7 +13,7 @@ abstract class Product with _$Product {
     @JsonKey(name: "sign",required: true,defaultValue: "\$") required String sign,
     @JsonKey(name: "description",required: true,defaultValue: "") required String description,
     @JsonKey(name: "displayPrice",required: true,defaultValue: 0.0) required double displayPrice,
-    @JsonKey(name: "id",required: true,defaultValue: "") required String id,
+    @JsonKey(name: "productID",required: true,defaultValue: "") required String id,
     @JsonKey(name: "imgUrl",required: true,defaultValue: "") required String imgUrl,
     @JsonKey(name: "details",required: true,defaultValue: []) required List<ProductDetail> details
   })=_Product;
@@ -30,6 +30,7 @@ abstract class ProductDetail with _$ProductDetail {
     @JsonKey(name: "weight",required: true,defaultValue: "") required String weight ,
     @JsonKey(name: "duration",required: true,defaultValue: "") required String duration,
     @JsonKey(name: "price",required: true,defaultValue: 0.0) required double price,
+    @JsonKey(name: "selected",required: false,defaultValue: false)@Default(false) bool selected,
   })=_ProductDetail;
 
   factory ProductDetail.fromJson(Map<String, dynamic> json) =>

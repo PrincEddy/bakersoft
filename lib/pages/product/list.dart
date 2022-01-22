@@ -1,7 +1,12 @@
 import 'package:badges/badges.dart';
+import 'package:bakersoft/business/cart/bloc.dart';
+import 'package:bakersoft/business/cart/event.dart';
+import 'package:bakersoft/business/cart/state.dart';
 import 'package:bakersoft/business/product/bloc.dart';
 import 'package:bakersoft/business/product/event.dart';
 import 'package:bakersoft/business/product/state.dart';
+import 'package:bakersoft/business/productDetail/bloc.dart';
+import 'package:bakersoft/business/productDetail/event.dart';
 import 'package:bakersoft/constants.dart';
 import 'package:bakersoft/model/product.dart';
 import 'package:bakersoft/pages/cart/list.dart';
@@ -25,6 +30,7 @@ class _ProductListState extends State<ProductList> {
   void initState() {
     // TODO: implement initState
     context.read<ProductBloc>().add(LoadProducts());
+    context.read<CartBloc>().add(LoadCarts());
     super.initState();
   }
 
@@ -69,8 +75,6 @@ class _ProductListState extends State<ProductList> {
   }
 }
 
-String imgUrl =
-    "https://www.fabmood.com/inspiration/wp-content/uploads/2019/09/wedding-cake-3.jpg";
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key,required this.product}) : super(key: key);
@@ -79,8 +83,9 @@ final Product product;
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.read<ProductDetailBloc>().add(SelectProductDetail(product));
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProductView(product: product,)));
+            context, MaterialPageRoute(builder: (context) => ProductView()));
       },
       child: Container(
         margin: EdgeInsets.only(top: 20.h),
@@ -177,25 +182,61 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CartList()));
-      },
-      child: Badge(
-        badgeColor: Colors.black,
-        badgeContent: Text(
-          '0',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        child: Icon(
-          FontAwesomeIcons.shoppingCart,
-          color: primaryColor.shade500,
-          size: 30.sp,
-        ),
-      ),
+    return BlocBuilder<CartBloc,CartState>(
+      builder: (context,state) {
+       return state.maybeWhen((carts) => InkWell(
+         onTap: () {
+           Navigator.push(
+               context, MaterialPageRoute(builder: (context) => CartList()));
+         },
+         child: Badge(
+           badgeColor: Colors.black,
+           badgeContent: Text(
+             '${carts.length}',
+             style: TextStyle(
+               color: Colors.white,
+             ),
+           ),
+           child: Icon(
+             FontAwesomeIcons.shoppingCart,
+             color: primaryColor.shade500,
+             size: 30.sp,
+           ),
+         ),
+       ),cartLoaded: (carts,total)=>InkWell(
+         onTap: () {
+           Navigator.push(
+               context, MaterialPageRoute(builder: (context) => CartList()));
+         },
+         child: Badge(
+           badgeColor: Colors.black,
+           badgeContent: Text(
+             '${carts.length}',
+             style: TextStyle(
+               color: Colors.white,
+             ),
+           ),
+           child: Icon(
+             FontAwesomeIcons.shoppingCart,
+             color: primaryColor.shade500,
+             size: 30.sp,
+           ),
+         ),
+       ), orElse: ()=>Badge(
+         badgeColor: Colors.black,
+         badgeContent: Text(
+           '0',
+           style: TextStyle(
+             color: Colors.white,
+           ),
+         ),
+         child: Icon(
+           FontAwesomeIcons.shoppingCart,
+           color: primaryColor.shade500,
+           size: 30.sp,
+         ),
+       ));
+      }
     );
   }
 }
