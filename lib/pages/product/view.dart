@@ -1,11 +1,12 @@
 import 'package:bakersoft/constants.dart';
+import 'package:bakersoft/model/product.dart';
 import 'package:bakersoft/pages/product/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class ProductView extends StatefulWidget {
-  const ProductView({Key? key}) : super(key: key);
-
+  const ProductView({Key? key,required this.product}) : super(key: key);
+  final Product product;
   @override
   _ProductViewState createState() => _ProductViewState();
 }
